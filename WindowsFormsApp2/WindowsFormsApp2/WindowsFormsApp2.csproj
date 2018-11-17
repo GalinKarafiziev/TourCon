@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="app.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="app.Designer.cs">
+      <DependentUpon>app.cs</DependentUpon>
+    </Compile>
     <Compile Include="BorrowItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -56,12 +62,6 @@
     </Compile>
     <Compile Include="Camping.Designer.cs">
       <DependentUpon>Camping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="D:\Fontys\WEB2\app.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="D:\Fontys\WEB2\app.Designer.cs">
-      <DependentUpon>app.cs</DependentUpon>
     </Compile>
     <Compile Include="HomePage.cs">
       <SubType>UserControl</SubType>
@@ -77,14 +77,14 @@
     <Compile Include="UnderMaintanence.Designer.cs">
       <DependentUpon>UnderMaintanence.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="app.resx">
+      <DependentUpon>app.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BorrowItems.resx">
       <DependentUpon>BorrowItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Camping.resx">
       <DependentUpon>Camping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="D:\Fontys\WEB2\app.resx">
-      <DependentUpon>app.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
