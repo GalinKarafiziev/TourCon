@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->double('account_money')->nullable();
+            $table->double('remaining_money')->nullable();
+            $table->boolean('checkIn_event')->default(false);
+            $table->boolean('checkIn_camp')->default(false);
+            $table->boolean('checkOut_event')->default(false);
+            $table->boolean('checkOut_camp')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

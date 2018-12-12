@@ -30,7 +30,7 @@
               </div>
               <span class="text-muted">€20</span>
             </li>
-            
+
             <li class="list-group-item d-flex justify-content-between">
               <span>Total </span>
               <strong>€85</strong>
