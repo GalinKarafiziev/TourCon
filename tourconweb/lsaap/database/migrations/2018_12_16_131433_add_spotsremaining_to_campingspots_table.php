@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdercampingsTable extends Migration
+class AddSpotsremainingToCampingspotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateOrdercampingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ordercampings', function (Blueprint $table) {
-            $table->integer('order_id');
-            $table->integer('camping_id');
+        Schema::table('campingspots', function (Blueprint $table) {
+            $table->integer('spotsremaining');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateOrdercampingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ordercampings');
+        Schema::table('campingspots', function (Blueprint $table) {
+            $table->dropColumn('spotsremaining');
+        });
     }
 }

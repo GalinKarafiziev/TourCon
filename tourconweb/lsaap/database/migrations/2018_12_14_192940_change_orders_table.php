@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPrimaryKeyToOrdercampings extends Migration
+class ChangeOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddPrimaryKeyToOrdercampings extends Migration
      */
     public function up()
     {
-        Schema::table('ordercampings', function (Blueprint $table) {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('ticket_id')->nullable()->change();
 
-            $table->increments('id');
+
 
         });
     }
@@ -27,9 +28,6 @@ class AddPrimaryKeyToOrdercampings extends Migration
      */
     public function down()
     {
-        Schema::table('ordercampings', function (Blueprint $table) {
-            $table->dropColumn('id');
-
-        });
+        //
     }
 }

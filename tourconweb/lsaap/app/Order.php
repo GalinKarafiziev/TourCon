@@ -21,6 +21,10 @@ class Order extends Model
         return $this->belongsTo('App\Ticket');
     }
 
+    public function campingspots(){
+        return $this->belongsToMany('App\Campingspot', 'campingsport_order');
+    }
+
 
 
 }

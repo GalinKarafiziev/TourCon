@@ -8,10 +8,17 @@ class Campingspot extends Model
 {
     protected $table = 'campingspots';
     public $primaryKey = 'id';
-    public $timestamps = true;
+
+    public $timestamps = false;
+    protected $fillable = ['isAvailable', 'spotsremaining', 'totalprice', 'price'];
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order');
+        return $this->belongsToMany('App\Order', 'campingsport_order');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 }
