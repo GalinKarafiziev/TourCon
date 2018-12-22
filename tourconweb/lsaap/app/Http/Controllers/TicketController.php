@@ -40,4 +40,11 @@ class TicketController extends Controller
     {
         return view('pages.buy');
     }
+
+    public function destroy($id)
+    {
+        $ticket = Ticket::find($id);
+        $ticket->delete();
+        return redirect('/tickets')->with('success', 'Ticket removed');
+    }
 }

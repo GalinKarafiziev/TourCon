@@ -10,7 +10,7 @@ class Campingspot extends Model
     public $primaryKey = 'id';
 
     public $timestamps = false;
-    protected $fillable = ['isAvailable', 'spotsremaining', 'totalprice', 'price'];
+    protected $fillable = ['id','isAvailable', 'spotsremaining', 'totalprice', 'price'];
 
     public function orders()
     {
