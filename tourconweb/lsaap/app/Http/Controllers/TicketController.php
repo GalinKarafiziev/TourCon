@@ -8,6 +8,7 @@ use App\StoreOrder;
 use App\Order;
 use App\User;
 use App\Http\Controllers\OrderController;
+use Auth;
 class TicketController extends Controller
 {
 
@@ -41,10 +42,19 @@ class TicketController extends Controller
         return view('pages.buy');
     }
 
+    public function edit($id)
+    {
+        $ticket = Ticket::find($id);
+
+        return view ('tickets.edit')->with('ticket', $ticket);
+    }
     public function destroy($id)
     {
         $ticket = Ticket::find($id);
-        $ticket->delete();
-        return redirect('/tickets')->with('success', 'Ticket removed');
+        $user = User::find(Auth::id());
+        $order = Order::where('user_id', Auth::id())->get();
+        $user->ticket()->delete($ticket);
+        $user->orders()->delete($order);
+
     }
 }
