@@ -13,9 +13,10 @@ class AddTicketIdToOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->integer('ticket_id');
-        });
+      Schema::table('orders', function (Blueprint $table) {
+          $table->integer('ticket_id')->nullable()->unsigned();
+          $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+      });
     }
 
     /**
@@ -26,7 +27,7 @@ class AddTicketIdToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropCloumn('ticket_id');
+            //
         });
     }
 }

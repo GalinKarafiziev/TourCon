@@ -14,7 +14,7 @@ class Campingspot extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Order', 'campingsport_order');
+        return $this->belongsToMany('App\Order');
     }
 
     public function users()

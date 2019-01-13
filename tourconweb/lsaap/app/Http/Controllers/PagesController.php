@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\User;
+use Auth;
 class PagesController extends Controller
 {
+
     public function index(){
         return view('pages.index');
     }
@@ -16,7 +18,8 @@ class PagesController extends Controller
         return view('pages.services');
     }
     public function account(){
-        return view('pages.account');
+      $users = User::all();
+      return view('pages.account', compact('users'));
     }
     public function tickets(){
         return view('pages.tickets');

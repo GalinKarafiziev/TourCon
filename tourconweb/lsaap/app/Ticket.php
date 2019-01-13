@@ -20,6 +20,6 @@ class Ticket extends Model
     }
 
     public function order(){
-        return $this->hasOne('App\Ticket');
+        return $this->hasOne('App\Order');
     }
 }

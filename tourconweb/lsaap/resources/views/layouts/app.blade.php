@@ -20,10 +20,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+        <div class ="container">
+                @include('inc.messages')
+        </div>
     <div id="app">
 
 
         <main class="py-4">
+
             @yield('content')
         </main>
     </div>

@@ -14,23 +14,24 @@
             <div class="carousel-caption">
               <h3>Welcome To Tourcon</h3>
               <p>Buy tickets here and join our Tourcon experience!</p>
-            </div>   
+              <a href="/tickets/create" class="btn btn-info">Learn more!</a>
+            </div>
           </div>
           <div class="carousel-item">
             <img src="https://cdn.mos.cms.futurecdn.net/fJdan2GkKRELdKxxT9skdk.jpg" alt="2" width="1100" height="650">
             <div class="carousel-caption">
               <h3>Join in the tournaments</h3>
               <p>If you are interested you can join and/or watch the gaming tournaments.</p>
-              <button>Click here!</button>
-            </div>   
+              <a href=""class="btn btn-info">Watch here!</a>
+            </div>
           </div>
           <div class="carousel-item">
             <img src="https://www.bosjuweel.nl/wp-content/uploads/2018/04/festival-tent-huren-bosjuweel-1.jpg" alt="3" width="1100" height="650">
             <div class="carousel-caption">
               <h3>You can also reserve a camping spot if you'd like to stay more than 1 day.</h3>
               <p>Learn more about it here:</p>
-              <button>Learn More!</button>
-            </div>   
+              <a href="/campingspots/index" class="btn btn-info">Learn more</a>
+            </div>
           </div>
         </div>
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -40,6 +41,5 @@
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>
-  
+
 @endsection
-  

@@ -24,14 +24,14 @@
                       <a class="nav-link" href="/about">About</a>
                     </li>
                     <li class="nav-item">
+                      @if(!empty(Auth::user()->ticket->id))
                       <a class="nav-link " href="/account">Account</a>
                     </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="/tickets">Tickets</a>
-                    </li>
+                    @else
                     <li class="nav-item">
-                      <a class="nav-link" href="/login">Log In</a>
+                      <a class="nav-link" href="/tickets/create">Buy ticket</a>
                     </li>
+                    @endif
                   </ul>
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">

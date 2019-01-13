@@ -22,7 +22,7 @@ class Order extends Model
     }
 
     public function campingspots(){
-        return $this->belongsToMany('App\Campingspot', 'campingsport_order');
+        return $this->belongsToMany('App\Campingspot');
     }
 
 

@@ -23,13 +23,13 @@
           <p>You can  book a camping spot by choosing a free camping spot
               on the website. Every spot can be booked for at most 6 persons. To make such reservation, the visitor should
               specify all participants. You can only make a reservation for the whole weekend; not for a single day.</p>
-          <p><a class="btn btn-secondary" href="/tickets" role="button">Buy ticket &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="/tickets/create" role="button">Buy ticket &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/WPVG_icon_2016.svg/1024px-WPVG_icon_2016.svg.png" alt="Generic placeholder image" width="140" height="140">
           <h2>Gaming</h2>
           <p>In addition to buying a ticket you get the free opportunity to play games in the event. You can join our LAN party or be competitive and join our tornaments or just chill and spectate. </p>
-         
+
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 

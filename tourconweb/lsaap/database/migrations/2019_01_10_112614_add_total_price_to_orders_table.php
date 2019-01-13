@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeOrdersTable extends Migration
+class AddTotalPriceToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,7 @@ class ChangeOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('ticket_id')->nullable()->change();
-
-
-
+            $table->double('totalprice');
         });
     }
 
@@ -28,6 +25,8 @@ class ChangeOrdersTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 }

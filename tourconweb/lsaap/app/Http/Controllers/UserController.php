@@ -14,10 +14,16 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $this->validate($request,
-        ['account_money' => 'required',]);
+        [
+          'cardnumber' => 'required',
+          'cardname' => 'required',
+          'cvv' => 'required',
+          'expirationdate' => 'required',
+          'account_money' => 'required'
+        ]);
 
         //edit from form
-        $user->account_money = $request->input('account_money');
+        $user->account_money = $user->account_money + $request->input('account_money');
 
         //save in db
         $user->save();
@@ -40,6 +46,7 @@ class UserController extends Controller
         return view('users.show')->with('user', $user);
 
     }
+
 
     public function index()
     {

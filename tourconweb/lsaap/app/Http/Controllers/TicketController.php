@@ -13,17 +13,37 @@ class TicketController extends Controller
 {
 
     public function store(Request $request){
+
+      $this->validate($request,
+      [
+        'cardnumber' => 'required',
+        'cardname' => 'required',
+        'cvv' => 'required',
+        'expirationdate' => 'required',
+      ]);
+        $ticket_exists = Ticket::where('user_id', auth()->user()->id)->get();
+
+        if($ticket_exists->count() > 0){
+            return redirect('/')->with('error','You already have ticket');
+        }
+        else
+        {
         $input = $request->all();
         $ticket = new Ticket;
+        $ticket->price = 55;
         $ticket->user_id = auth()->user()->id;
         $ticket->save();
 
-        if($ticket->save()){
         $order = new Order;
         $order->user_id = $ticket->user_id;
+        $order->totalprice = 55;
         $order->ticket()->associate($ticket)->save();
         $order->save();
-        }
+        //$ticket->order()->associate($order);
+
+        return redirect('/')->with('success', 'Ticket purchased');
+
+    }
     }
 
 
@@ -50,11 +70,16 @@ class TicketController extends Controller
     }
     public function destroy($id)
     {
-        $ticket = Ticket::find($id);
-        $user = User::find(Auth::id());
-        $order = Order::where('user_id', Auth::id())->get();
-        $user->ticket()->delete($ticket);
+        $user = User::find($id);
+        $tickets = Ticket::where('user_id','=', auth()->user()->id)->get()->pluck('id')->toArray();
+        foreach($tickets as $ticket){
+        $order = Order::where('ticket_id', $ticket);
         $user->orders()->delete($order);
+        $user->ticket()->delete($ticket);
+      }
+
+
+        return redirect('/')->with('success', 'Ticket deleted');
 
     }
 }
