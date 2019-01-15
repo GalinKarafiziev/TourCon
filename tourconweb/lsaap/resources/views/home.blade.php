@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard
+                <div class="card-header">Orderboard
                   <a href="/" class="btn btn-info">Go back!</a>
                 </div>
 
@@ -22,7 +22,7 @@
                     <tr>
                     <td><b>Order ID:</b> {{$order->id}}</td>
                     <td><b>ordered by:</b> {{$order->user->name}}</td>
-                    <td><b>ticket id:</b><a href="/tickets/{{@$order->ticket->id}}/edit">{{$order->ticket_id}}</a></td>
+                    <td><b>ticket id:</b> {{$order->ticket_id}}</a></td>
                     <td><b>{!! Form::open(['action'=>['TicketController@destroy', Auth::user()->id] , 'method'=>'POST', 'class'=>'float-right', 'id'=>"editanddelete"]) !!}
                     {{Form::hidden('_method', 'DELETE')}}
                     {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}

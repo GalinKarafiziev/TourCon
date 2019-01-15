@@ -57,14 +57,17 @@ class CampingspotController extends Controller
               if($ticket_exists->isEmpty()){
                   return redirect('/tickets/create')->with('error','All of the users you reserve a campingspot with must have a ticket!');
               }
+              else{
               $order = new Order;
               $order->user_id = $user;
               $order->totalprice = $counter * 20 + $campingspot->price;
               $order->save();
               $campingspot->orders()->attach($order);
             }
+            }
             $campingspot->users()->attach($users);
         }
+        
         $campingspot->spotsremaining = $campingspot->spotsremaining - $counter;
         if($campingspot->spotsremaining < 0){
           $campingspot->spotsremaining = 0;
@@ -81,7 +84,6 @@ class CampingspotController extends Controller
 }catch(\Illuminate\Database\QueryException $ex){
   return redirect('/')->with('error', 'Something went wrong!');
 }
-
 
 
     }

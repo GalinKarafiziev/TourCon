@@ -26,6 +26,7 @@
 @for ($i=0; $i < 6; $i++)
 <input type="text" name="emails[{{ $i }}]" value="">
 @endfor
+</div>
 <br>
 </div>
 <br>
