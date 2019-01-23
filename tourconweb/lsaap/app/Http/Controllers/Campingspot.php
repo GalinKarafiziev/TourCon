@@ -10,6 +10,8 @@ use Validator;
 use App\Ticket;
 use Illuminate\Support\Facades\Input;
 use Auth;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 class CampingspotController extends Controller
 {
     public function __construct()
@@ -67,7 +69,7 @@ class CampingspotController extends Controller
             }
             $campingspot->users()->attach($users);
         }
-        
+
         $campingspot->spotsremaining = $campingspot->spotsremaining - $counter;
         if($campingspot->spotsremaining < 0){
           $campingspot->spotsremaining = 0;
@@ -78,6 +80,17 @@ class CampingspotController extends Controller
       }
 
       $campingspot->save();
+      $data = array(
+        'user_id' => auth()->user()->id,
+        'user_name' => auth()->user()->name,
+        'cardnumber' => $request->input('cardnumber'),
+        'cardname' => $request->input('cardname'),
+        'campingspot' => $campingspot->id,
+        'price' => $order->totalprice,
+        'order' => $order->id,
+      
+      );
+      Mail::to(auth()->user()->email)->send(new SendMail($data));
         return redirect('/')->with('success','You just reserved a camping spot!');
       }
     }

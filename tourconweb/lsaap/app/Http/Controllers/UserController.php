@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function __construct()
@@ -19,7 +21,7 @@ class UserController extends Controller
           'cardname' => 'required',
           'cvv' => 'required',
           'expirationdate' => 'required',
-          'account_money' => 'required'
+          'account_money' => 'required '
         ]);
 
         //edit from form
@@ -27,8 +29,17 @@ class UserController extends Controller
 
         //save in db
         $user->save();
+        $data = array(
+          'user_id' => auth()->user()->id,
+          'user_name' => auth()->user()->name,
+          'cardnumber' => $request->input('cardnumber'),
+          'cardname' => $request->input('cardname'),
+          'account_money' => auth()->user()->account_money,
+        );
+        Mail::to(auth()->user()->email)->send(new SendMail($data));
 
-        return redirect('/home');
+        return redirect('/')->with('success', 'Event-money purchased');
+
 
 
     }

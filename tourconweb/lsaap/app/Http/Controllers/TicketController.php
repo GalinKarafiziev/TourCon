@@ -9,6 +9,8 @@ use App\Order;
 use App\User;
 use App\Http\Controllers\OrderController;
 use Auth;
+use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 class TicketController extends Controller
 {
 
@@ -41,6 +43,17 @@ class TicketController extends Controller
         $order->save();
         //$ticket->order()->associate($order);
 
+        $data = array(
+          'user_id' => auth()->user()->id,
+          'user_name' => auth()->user()->name,
+          'cardnumber' => $request->input('cardnumber'),
+          'cardname' => $request->input('cardname'),
+          'ticket' => $order->ticket_id,
+          'price' => $order->totalprice,
+          'order' => $order->id,
+        );
+        Mail::to(auth()->user()->email)->send(new SendMail($data));
+
         return redirect('/')->with('success', 'Ticket purchased');
 
     }
@@ -72,14 +85,21 @@ class TicketController extends Controller
     {
         $user = User::find($id);
         $tickets = Ticket::where('user_id','=', auth()->user()->id)->get()->pluck('id')->toArray();
+        $campingspot = $user->campingspots()->wherePivot('user_id', '=', auth()->user()->id);
+        if($campingspot){
+          return redirect('/')->with('error', 'Please, cancel your campingspot reservations before canceling your ticket!');
+        }
+        else{
         foreach($tickets as $ticket){
         $order = Order::where('ticket_id', $ticket);
-        $user->orders()->delete($order);
         $user->ticket()->delete($ticket);
+
       }
+      return redirect('/')->with('success', 'Ticket deleted');
+    }
 
 
-        return redirect('/')->with('success', 'Ticket deleted');
+
 
     }
 }

@@ -8,5 +8,5 @@ use App\Ticket;
 
 class OrderController extends Controller
 {
-  
+  //
 }

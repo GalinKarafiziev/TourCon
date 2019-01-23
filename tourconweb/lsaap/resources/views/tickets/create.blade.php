@@ -1,7 +1,9 @@
 @extends('layout.app')
 @section('content')
+
 <center><h1>Order a ticket!</h1>
 <center>{!! Form::open(['action'=>'TicketController@store', 'method'=>'POST']) !!}
+  {{csrf_field()}}
   <div class="form-group col-md-6">
 <div class="form">
     {{Form::label('Card number:')}}

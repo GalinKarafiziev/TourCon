@@ -28,3 +28,4 @@ Route::resource('orders', 'OrderController');
 Route::resource('tickets', 'TicketController');
 Route::resource('users', 'UserController');
 Route::resource('campingspots', 'CampingspotController');
+Route::post('/send', 'EmailController@index');
