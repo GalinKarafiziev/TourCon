@@ -85,17 +85,20 @@ class TicketController extends Controller
     {
         $user = User::find($id);
         $tickets = Ticket::where('user_id','=', auth()->user()->id)->get()->pluck('id')->toArray();
-        $campingspot = $user->campingspots()->wherePivot('user_id', '=', auth()->user()->id);
-        if($campingspot){
-          return redirect('/')->with('error', 'Please, cancel your campingspot reservations before canceling your ticket!');
-        }
-        else{
-        foreach($tickets as $ticket){
-        $order = Order::where('ticket_id', $ticket);
-        $user->ticket()->delete($ticket);
+        $campingspot = $user->campingspots()->wherePivot('user_id', '=', auth()->user()->id)->get();
+        if($campingspot->isEmpty()){
+          foreach($tickets as $ticket){
+          $order = Order::where('ticket_id', $ticket);
+          $user->ticket()->delete($ticket);
 
-      }
-      return redirect('/')->with('success', 'Ticket deleted');
+          return redirect('/')->with('success', 'Successfull cancelation of ticket!');
+        }
+
+
+
+
+    }else{return redirect('/')->with('error', 'Please, cancel your campingspot reservations before canceling your ticket!');
+
     }
 
 
